@@ -1,6 +1,6 @@
 from collections import defaultdict, deque
 
-def strongCount(start, graph_dict, n):
+def personCount(start, graph_dict, n):
     visit = [False]*n
     count = 0
     
@@ -20,22 +20,18 @@ def strongCount(start, graph_dict, n):
 
 def solution(n, results):
     answer = 0
-    graph_dict = defaultdict(list)
+    win = defaultdict(list)
+    lose = defaultdict(list)
     for w, l in results:
-        graph_dict[l-1].append(w-1)
+        win[w-1].append(l-1)
+        lose[l-1].append(w-1)
     
-    count = [0]*n
+    totalCount = [0]*n
     for i in range(n):
-        count[i] = strongCount(i, graph_dict, n)
+        totalCount[i] = personCount(i, win, n) + personCount(i, lose, n)
+    print(totalCount)
     
-    count = sorted(count, reverse=True)
-    
-    temp = n-1
-    for i in range(n):
-        if count[i] == temp:
-            answer += 1
-            temp -= 1
-    return answer
+    return totalCount.count(n-1)
 
 n = 5
 results = [[4, 3], [4, 2], [3, 2], [1, 2], [2, 5]]
