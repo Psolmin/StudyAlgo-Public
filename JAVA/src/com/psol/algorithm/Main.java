@@ -1,7 +1,23 @@
 package com.psol.algorithm;
 
 
-import com.psol.algorithm.로또의_최고_순위와_최저_순위.Solution;
+//import com.psol.algorithm.신규_아이디_추천.Solution;
+
+//import com.psol.algorithm.예산.Solution;
+
+//import com.psol.algorithm.최소직사각형.Solution;
+
+//import com.psol.algorithm.다트_게임.Solution;
+
+//import com.psol.algorithm.숫자_문자열과_영단어.Solution;
+
+//import com.psol.algorithm.오픈채팅방.Solution;
+
+//import com.psol.algorithm.카카오프렌즈_컬러링북.Solution;
+
+//import com.psol.algorithm.짝지어_제거하기.Solution;
+
+import com.psol.algorithm.키패드_누르기.Solution;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -180,14 +196,96 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*** Level 2 ***/
+
+        /***
+         * 짝지어 제거하기
+         */
+
+//        Solution solution = new Solution();
+//        String s = "cdcd";
+//        System.out.println("solution = " + solution.solution(s));
+
+
+        /***
+         *
+         */
+
+//        Solution solution = new Solution();
+//        int m = 6;
+//        int n = 4;
+//        int[][] picture = {{1, 1, 1, 0}, {1, 2, 2, 0}, {1, 0, 0, 1}, {0, 0, 0, 1}, {0, 0, 0, 3}, {0, 0, 0, 3}};
+//        System.out.println("solution = " + solution.solution(m,n,picture));
+
+        /***
+         * 오픈채팅방
+         */
+
+//        String[] record = {"Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"};
+//        Solution solution = new Solution();
+//        System.out.println("solution.solution(record) = " + solution.solution(record));
+
+        /*** Level 1 ***/
+
+        /***
+         * 키패드 누르기
+         */
+
+        int[] numbers = {1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5};
+        String hand = "right";
+        Solution solution = new Solution();
+        System.out.println("solution.solution(numbers, hand) = " + solution.solution(numbers, hand));
+
+
+        /***
+         * 숫자 문자열과 영단어
+         */
+
+//        String s = "one4seveneight";
+//        Solution solution = new Solution();
+//        System.out.println("solution.solution(s) = " + solution.solution(s));
+
+
+        /***
+         * 다트게임
+         */
+
+//        String dartResult = "1S2D*3T";
+//        Solution solution = new Solution();
+//        System.out.println(solution.solution(dartResult));
+
+        /***
+         * 최소직사각형
+         */
+
+//        int[][] sizes = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
+//        Solution solution = new Solution();
+//        System.out.println(solution.solution(sizes));
+
+        /***
+         * 예산
+         */
+//        int[] d = {1,3,2,5,4};
+//        int budget = 9;
+//        Solution solution = new Solution();
+//        System.out.println(solution.solution(d, budget));
+
+        /***
+         * 신규 아이디 추천
+         */
+
+//        Solution solution = new Solution();
+//        String new_id = "...!@BaT#*..y.abcdefghijklm";
+//        System.out.println(solution.solution(new_id));
+
         /***
          * 로또의 최고 순위와 최저 순위
          */
 
-        Solution solution = new Solution();
-        int[] lottos = {44, 1, 0, 0, 31, 25};
-        int[] win_nums = {31, 10, 45, 1, 6, 19};
-        System.out.println(solution.solution(lottos, win_nums));
+//        Solution solution = new Solution();
+//        int[] lottos = {44, 1, 0, 0, 31, 25};
+//        int[] win_nums = {31, 10, 45, 1, 6, 19};
+//        System.out.println(solution.solution(lottos, win_nums));
 
         /***
          * 신고 결과 받기
