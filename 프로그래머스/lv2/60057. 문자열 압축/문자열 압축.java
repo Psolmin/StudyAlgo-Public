@@ -1,10 +1,6 @@
 class Solution {
     public int solution(String s) {
-        if (s.length() == 1) {
-            return 1;
-        }
-        
-        int min = Integer.MAX_VALUE;
+        int min = s.length();
         for (int i = 1; i <= s.length() / 2; i++) {
             int len = Compress(s, i);
             if (len < min) {
