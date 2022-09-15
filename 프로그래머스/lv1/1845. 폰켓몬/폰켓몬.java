@@ -1,14 +1,14 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 class Solution {
     public int solution(int[] nums) {
-        Map<Integer, Integer> countMap = new HashMap<>();
+        Set<Integer> numSet = new HashSet<>();
         for (int num : nums) {
-            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+            numSet.add(num);
         }
 
         int max = nums.length / 2;
-        return countMap.size() < max ? countMap.size() : max;
+        return numSet.size() < max ? numSet.size() : max;
     }
 }
