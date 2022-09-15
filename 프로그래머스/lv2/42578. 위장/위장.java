@@ -4,14 +4,16 @@ import java.util.Map;
 class Solution {
     public int solution(String[][] clothes) {
         int answer = 1;
-        Map<String, Integer> map = new HashMap<>();
-        for (String[] m : clothes) {
-            map.put(m[1], map.getOrDefault(m[1], 1) + 1);
+
+        Map<String, Integer> clothCount = new HashMap<>();
+        for (String[] str : clothes) {
+            clothCount.put(str[1], clothCount.getOrDefault(str[1], 0) + 1);
         }
 
-        for (int v : map.values()) {
-            answer *= v;
+        for (Map.Entry<String, Integer> entry : clothCount.entrySet()) {
+            answer *= entry.getValue() + 1;
         }
+
         return answer - 1;
     }
 }
