@@ -1,44 +1,26 @@
-import java.util.HashSet;
-import java.util.Set;
-
 class Solution {
-    Set<String> circuit = new HashSet<>();
+    int max = Integer.MIN_VALUE;
 
     public int solution(int k, int[][] dungeons) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < dungeons.length; i++) {
-            sb.append(i);
-        }
-        permutation("", sb.toString());
-
-        int max = Integer.MIN_VALUE;
-        for (String s : circuit) {
-            int cur = k;
-            int clear = 0;
-            for (char c : s.toCharArray()) {
-                int i = Character.getNumericValue(c);
-                if (dungeons[i][0] > cur) {
-                    break;
-                }
-                cur -= dungeons[i][1];
-                clear++;
-            }
-
-            if (clear > max) {
-                max = clear;
-            }
-        }
+//        int answer = -1;
+        boolean[] visit = new boolean[dungeons.length];
+        dfs(dungeons, k, visit, 0);
 
         return max;
     }
 
-    private void permutation(String prefix, String str) {
-        if (str.length() == 0) {
-            circuit.add(prefix);
+    private void dfs(int[][] dungeons, int k, boolean[] visit, int clear) {
+        for (int i = 0; i < dungeons.length; i++) {
+            if (visit[i] || k < dungeons[i][0]) {
+                continue;
+            }
+            visit[i] = true;
+            dfs(dungeons, k - dungeons[i][1], visit, clear + 1);
+            visit[i] = false;
         }
 
-        for (int i = 0; i < str.length(); i++) {
-            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1));
+        if (clear > max) {
+            max = clear;
         }
     }
 }
