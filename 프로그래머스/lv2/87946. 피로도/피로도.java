@@ -19,10 +19,10 @@ class Solution {
             visit[i] = false;
         }
 
-//        if (clear > max) {
-//            max = clear;
-//        }
+       if (clear > max) {
+           max = clear;
+       }
 
-        max = Math.max(max, clear);
+        // max = Math.max(max, clear);
     }
 }
