@@ -3,29 +3,42 @@ import java.util.*;
 class Solution {
     public int solution(int n, int[][] computers) {
         int answer = 0;
-        
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visit = new boolean[n];
-        
+
+        Map<Integer, ArrayList<Integer>> graph = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            if (visit[i] == false) {
-                answer++;
-            
-                visit[i] = true;
-                queue.offer(i);
-            
-                while(!queue.isEmpty()) {
-                    int node = queue.poll();
-                    for (int j = 0; j < computers[node].length; j++) {
-                        if (computers[node][j] == 1 && visit[j] == false) {
-                            visit[j] = true;
-                            queue.offer(j);
-                        }
-                    }
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+                if (computers[i][j] == 1) {
+                    list.add(j);
                 }
             }
+            graph.put(i, list);
         }
-        
+
+        boolean[] visit = new boolean[n];
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            if (visit[i]) {
+                continue;
+            }
+            q.add(i);
+            answer++;
+
+            while (!q.isEmpty()) {
+                int computer = q.poll();
+                if (visit[computer]) {
+                    continue;
+                }
+                visit[computer] = true;
+
+                List<Integer> list = graph.get(computer);
+                for (int c : list) {
+                    q.add(c);
+                }
+
+            }
+        }
+
         return answer;
     }
 }
