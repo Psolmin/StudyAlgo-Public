@@ -67,7 +67,6 @@ class Solution {
                 progress += job.time;
             }
         }
-
         return answer.stream().mapToInt(i -> i).sum() / jobs.length;
     }
 }
