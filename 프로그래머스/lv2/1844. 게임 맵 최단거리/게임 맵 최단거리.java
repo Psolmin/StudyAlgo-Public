@@ -2,82 +2,56 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 class Solution {
-    int[] dx = {-1, 0, 1, 0};
-    int[] dy = {0, 1, 0, -1};
+    int[] nr = {-1, 0, 1, 0};
+    int[] nc = {0, 1, 0, -1};
+    int n;
+    int m;
 
-    int min = Integer.MAX_VALUE;
     public int solution(int[][] maps) {
-        boolean[][] visit = new boolean[maps.length][maps[0].length];
-//        visit[maps.length - 1][maps[0].length - 1] = true;
-        bfs(maps, visit);
+        n = maps.length;
+        m = maps[0].length;
 
-//        dfs(maps, visit, maps.length - 1, maps[0].length - 1, 1);
-
-        return min == Integer.MAX_VALUE ? -1 : min;
-    }
-
-    private class XY {
-        int x;
-        int y;
-        int move;
-
-        public XY(int x, int y, int move) {
-            this.x = x;
-            this.y = y;
-            this.move = move;
-        }
-    }
-
-    private void bfs(int[][] maps, boolean[][] visit) {
-        Queue<XY> q = new LinkedList<>();
-        q.add(new XY(0,0, 1));
+        boolean[][] visit = new boolean[n][m];
+        Queue<RC> queue = new LinkedList<>();
+        queue.offer(new RC(0, 0, 1));
         visit[0][0] = true;
 
-        while (!q.isEmpty()) {
-            XY xy = q.poll();
-            if (xy.x == maps.length - 1 && xy.y == maps[0].length - 1) {
-                if (xy.move < min) {
-                    min = xy.move;
-                }
-                return;
+        while (!queue.isEmpty()) {
+            RC cur = queue.poll();
+            int r = cur.r;
+            int c = cur.c;
+            int move = cur.move;
+            if (r == n - 1 && c == m - 1) {
+                return move;
             }
 
             for (int i = 0; i < 4; i++) {
-                int nx = xy.x + dx[i];
-                int ny = xy.y + dy[i];
-                if (nx < 0 || nx >= maps.length || ny < 0 || ny >= maps[0].length || visit[nx][ny] || maps[nx][ny] == 0) {
+                int row = r + nr[i];
+                int col = c + nc[i];
+                if (checkRC(row, col) || visit[row][col] || maps[row][col] == 0) {
                     continue;
                 }
-                visit[nx][ny] = true;
-                q.add(new XY(nx, ny, xy.move + 1));
+                queue.offer(new RC(row, col, move + 1));
+                visit[row][col] = true;
             }
         }
+
+        return -1;
     }
 
+    private boolean checkRC(int row, int col) {
+        return row < 0 || row >= n || col < 0 || col >= m;
+    }
 
-    private void dfs(int[][] maps, boolean[][] visit, int x, int y, int move) {
-        System.out.println("x = " + x + ", y = " + y + " --> " + move);
+    private class RC {
+        int r;
+        int c;
+        int move;
 
-        if (maps[x][y] == 0) {
-            return;
-        }
-
-        if (x == 0 && y == 0) {
-            if (move < min) {
-                min = move;
-            }
-            System.out.println("min = " + min);
-            return;
-        }
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if (nx < 0 || nx >= maps.length || ny < 0 || ny >= maps[0].length || visit[nx][ny]) {
-                continue;
-            }
-            visit[nx][ny] = true;
-            dfs(maps, visit, nx, ny, move + 1);
-            visit[nx][ny] = false;
+        public RC(int r, int c, int move) {
+            this.r = r;
+            this.c = c;
+            this.move = move;
         }
     }
 }
