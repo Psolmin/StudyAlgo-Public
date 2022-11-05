@@ -1,6 +1,5 @@
 -- 코드를 입력하세요
 SELECT 
-    DISTINCT
     YEAR(SALES_DATE) AS YEAR, 
     MONTH(SALES_DATE) AS MONTH, 
     GENDER,
